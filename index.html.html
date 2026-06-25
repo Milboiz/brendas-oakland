@@ -1,0 +1,497 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Brenda's Oakland · New Orleans French Soul Food</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,400;1,9..144,500&family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,400&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --espresso:#241410;
+    --espresso-2:#37241b;
+    --cream:#f7eedb;
+    --cream-2:#efe1c7;
+    --paper:#fbf6ec;
+    --brass:#c0892f;
+    --brass-deep:#9a6a1e;
+    --brick:#a6322a;
+    --brick-deep:#7f231d;
+    --shutter:#3c5a4e;
+    --ink:#2a1a12;
+    --muted:#6f5d4f;
+    --line:rgba(42,26,18,.16);
+    --maxw:1180px;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
+  body{
+    font-family:"DM Sans",system-ui,sans-serif;
+    color:var(--ink);
+    background:var(--cream);
+    line-height:1.6;
+    overflow-x:hidden;
+  }
+  ::selection{background:var(--brass);color:#fff}
+  a{color:inherit;text-decoration:none}
+  img{display:block;max-width:100%}
+  .wrap{max-width:var(--maxw);margin:0 auto;padding:0 28px}
+
+  /* type */
+  .display{font-family:"Fraunces",Georgia,serif;font-weight:500;line-height:1.04;letter-spacing:-.01em}
+  .eyebrow{font-size:12.5px;font-weight:600;letter-spacing:.22em;text-transform:uppercase}
+  .lede{font-size:clamp(17px,2vw,19px);line-height:1.65}
+
+  .btn{display:inline-flex;align-items:center;gap:9px;font-family:"DM Sans";font-weight:600;font-size:14.5px;
+    letter-spacing:.02em;padding:13px 24px;border-radius:2px;cursor:pointer;border:1.5px solid transparent;
+    transition:transform .2s ease,background .2s ease,color .2s ease,border-color .2s ease;white-space:nowrap}
+  .btn:focus-visible{outline:3px solid var(--brass);outline-offset:3px}
+  .btn-fill{background:var(--brick);color:#fdf3e6}
+  .btn-fill:hover{background:var(--brick-deep);transform:translateY(-2px)}
+  .btn-out{border-color:currentColor;color:var(--espresso)}
+  .btn-out:hover{background:var(--espresso);color:var(--cream);transform:translateY(-2px)}
+  .btn-out.on-dark{color:var(--cream)}
+  .btn-out.on-dark:hover{background:var(--cream);color:var(--espresso)}
+
+  /* ---------- NAV ---------- */
+  header.nav{position:fixed;top:0;left:0;right:0;z-index:50;transition:background .35s ease,box-shadow .35s ease,padding .35s ease;padding:20px 0}
+  header.nav.solid{background:var(--espresso);box-shadow:0 2px 24px rgba(0,0,0,.28);padding:12px 0}
+  .nav-inner{display:flex;align-items:center;justify-content:space-between;gap:20px}
+  .brand{display:flex;align-items:baseline;gap:9px;color:var(--cream)}
+  .brand .name{font-family:"Fraunces";font-weight:600;font-size:25px;letter-spacing:-.01em;line-height:1}
+  .brand .tag{font-size:10.5px;letter-spacing:.28em;text-transform:uppercase;color:var(--brass);font-weight:600;padding-bottom:2px}
+  nav.links{display:flex;align-items:center;gap:30px}
+  nav.links a.lk{color:var(--cream);font-size:14px;font-weight:500;letter-spacing:.02em;position:relative;padding:4px 0}
+  nav.links a.lk::after{content:"";position:absolute;left:0;bottom:-2px;width:0;height:1.5px;background:var(--brass);transition:width .25s ease}
+  nav.links a.lk:hover::after{width:100%}
+  .nav-cta{display:flex;align-items:center;gap:12px}
+  .nav-phone{color:var(--cream);font-size:14px;font-weight:600;opacity:.9}
+  .nav-phone:hover{opacity:1;color:var(--brass)}
+  .burger{display:none;background:none;border:none;cursor:pointer;flex-direction:column;gap:5px;padding:6px}
+  .burger span{width:26px;height:2px;background:var(--cream);display:block;transition:.3s}
+
+  /* ---------- HERO ---------- */
+  .hero{position:relative;min-height:100vh;display:flex;align-items:flex-end;color:var(--cream);overflow:hidden}
+  .hero-bg{position:absolute;inset:0;background-image:url('https://images.unsplash.com/photo-1626645738196-c2a7c87a8f58?w=1600&q=80');background-size:cover;background-position:center;transform:scale(1.05)}
+  .hero-bg::after{content:"";position:absolute;inset:0;background:
+    linear-gradient(180deg,rgba(36,20,16,.55) 0%,rgba(36,20,16,.15) 35%,rgba(36,20,16,.55) 70%,rgba(36,20,16,.95) 100%)}
+  .hero-inner{position:relative;width:100%;padding-bottom:64px;padding-top:140px}
+  .hero .eyebrow{color:var(--brass);margin-bottom:22px}
+  .hero h1{font-size:clamp(42px,7.2vw,92px);max-width:14ch;margin-bottom:24px}
+  .hero h1 em{font-style:italic;color:var(--brass)}
+  .hero p.lede{max-width:48ch;color:#f3e7d4;opacity:.95}
+  .hero-actions{display:flex;gap:14px;margin-top:34px;flex-wrap:wrap}
+  .hero-meta{display:flex;align-items:center;gap:22px;margin-top:34px;flex-wrap:wrap;font-size:14px}
+  .status{display:inline-flex;align-items:center;gap:8px;font-weight:600}
+  .status .dot{width:9px;height:9px;border-radius:50%;background:#7bc47f;box-shadow:0 0 0 4px rgba(123,196,127,.25)}
+  .stars{color:var(--brass);letter-spacing:2px}
+  .hero-meta .sep{opacity:.4}
+
+  /* ---------- MARQUEE ---------- */
+  .marquee{background:var(--espresso);color:var(--cream);border-top:1px solid rgba(192,137,47,.3);border-bottom:1px solid rgba(192,137,47,.3);overflow:hidden;padding:16px 0}
+  .marquee-track{display:flex;gap:0;white-space:nowrap;width:max-content;animation:scroll 38s linear infinite}
+  .marquee:hover .marquee-track{animation-play-state:paused}
+  .marquee span{font-family:"Fraunces";font-style:italic;font-size:22px;padding:0 26px;display:inline-flex;align-items:center;gap:26px}
+  .marquee span::after{content:"✦";color:var(--brass);font-style:normal;font-size:13px}
+  @keyframes scroll{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+
+  /* ---------- STORY ---------- */
+  .story{padding:120px 0;background:var(--cream)}
+  .story-grid{display:grid;grid-template-columns:1.05fr 1fr;gap:72px;align-items:center}
+  .story-img-wrap{position:relative}
+  .story-img-wrap img{width:100%;height:560px;object-fit:cover;border-radius:3px}
+  .story-img-wrap .frame{position:absolute;inset:16px -16px -16px 16px;border:1.5px solid var(--brass);border-radius:3px;z-index:-1}
+  .story .eyebrow{color:var(--brick);margin-bottom:20px}
+  .story h2{font-size:clamp(32px,4.2vw,52px);margin-bottom:26px;max-width:15ch}
+  .story p{color:var(--muted);margin-bottom:18px;font-size:16.5px}
+  .story p strong{color:var(--ink);font-weight:600}
+  .sig{font-family:"Fraunces";font-style:italic;font-size:26px;color:var(--brick);margin-top:8px}
+  .story .read-more{margin-top:26px;display:inline-flex;align-items:center;gap:9px;font-weight:600;color:var(--brick);border-bottom:1.5px solid var(--brass);padding-bottom:3px}
+  .story .read-more:hover{gap:14px;transition:gap .2s}
+
+  /* ---------- MENU ---------- */
+  .menu{padding:120px 0;background:var(--espresso);color:var(--cream)}
+  .menu-head{text-align:center;margin-bottom:64px}
+  .menu-head .eyebrow{color:var(--brass);margin-bottom:18px}
+  .menu-head h2{font-size:clamp(34px,5vw,60px)}
+  .menu-head p{color:#cbb79f;margin-top:14px;font-size:15px}
+  .menu-cols{display:grid;grid-template-columns:1fr 1fr;gap:56px 80px}
+  .menu-group{}
+  .menu-group h3{font-family:"Fraunces";font-weight:500;font-size:26px;display:flex;align-items:center;justify-content:space-between;gap:14px;padding-bottom:16px;margin-bottom:20px;border-bottom:1.5px solid rgba(192,137,47,.4)}
+  .timetag{font-family:"DM Sans";font-size:11px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:var(--espresso);background:var(--shutter);padding:5px 11px;border-radius:2px;white-space:nowrap}
+  .timetag.gold{background:var(--brass)}
+  .menu-line{display:flex;align-items:baseline;margin-bottom:18px}
+  .menu-line .name{font-size:17px;font-weight:500}
+  .menu-line .name small{display:block;font-size:13px;font-weight:400;color:#bda88f;margin-top:2px;line-height:1.45;font-family:"DM Sans"}
+  .menu-line .lead{flex:1;border-bottom:1.5px dotted rgba(192,137,47,.55);margin:0 10px;transform:translateY(-5px);min-width:18px}
+  .menu-line .price{font-family:"Fraunces";font-size:18px;color:var(--brass);white-space:nowrap}
+  .menu-note{text-align:center;margin-top:56px;color:#bda88f;font-size:13.5px}
+  .menu-note a{color:var(--brass);border-bottom:1px solid currentColor}
+
+  /* ---------- SIGNATURES ---------- */
+  .sigs{padding:120px 0;background:var(--cream)}
+  .sigs .eyebrow{color:var(--brick);text-align:center;display:block;margin-bottom:18px}
+  .sigs h2{font-size:clamp(32px,4.5vw,54px);text-align:center;margin-bottom:60px}
+  .card-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:24px}
+  .dish{background:var(--paper);border-radius:3px;overflow:hidden;border:1px solid var(--line);transition:transform .3s ease,box-shadow .3s ease}
+  .dish:hover{transform:translateY(-6px);box-shadow:0 22px 40px -22px rgba(36,20,16,.5)}
+  .dish .ph{height:230px;overflow:hidden}
+  .dish .ph img{width:100%;height:100%;object-fit:cover;transition:transform .5s ease}
+  .dish:hover .ph img{transform:scale(1.06)}
+  .dish .body{padding:22px 22px 26px}
+  .dish h4{font-family:"Fraunces";font-weight:500;font-size:21px;margin-bottom:8px}
+  .dish p{font-size:14px;color:var(--muted);line-height:1.55}
+
+  /* ---------- VISIT ---------- */
+  .visit{padding:120px 0;background:var(--cream-2)}
+  .visit-grid{display:grid;grid-template-columns:1fr 1fr;gap:64px}
+  .visit .eyebrow{color:var(--brick);margin-bottom:18px}
+  .visit h2{font-size:clamp(32px,4.2vw,52px);margin-bottom:32px}
+  .info-block{margin-bottom:26px}
+  .info-block .k{font-size:12px;font-weight:600;letter-spacing:.16em;text-transform:uppercase;color:var(--brass-deep);margin-bottom:6px}
+  .info-block .v{font-size:16.5px;color:var(--ink)}
+  .info-block .v a{color:var(--brick);font-weight:600}
+  .hours-table{width:100%;border-collapse:collapse}
+  .hours-table td{padding:9px 0;border-bottom:1px solid var(--line);font-size:15px}
+  .hours-table td:last-child{text-align:right;color:var(--muted)}
+  .hours-table tr.today td{color:var(--brick);font-weight:600}
+  .badges{display:flex;flex-wrap:wrap;gap:10px;margin:30px 0 4px}
+  .badge{display:inline-flex;align-items:center;gap:8px;font-size:13px;font-weight:600;background:var(--paper);border:1px solid var(--line);padding:8px 14px;border-radius:30px}
+  .badge .pip{width:8px;height:8px;border-radius:50%}
+  .visit-aside{}
+  .map{height:300px;border-radius:3px;overflow:hidden;border:1px solid var(--line);position:relative;background:
+    repeating-linear-gradient(0deg,#e7d9bf 0 2px,transparent 2px 64px),
+    repeating-linear-gradient(90deg,#e7d9bf 0 2px,transparent 2px 90px),
+    #efe3c8;margin-bottom:22px}
+  .map .rd{position:absolute;background:#fbf6ec;box-shadow:0 0 0 1px var(--line)}
+  .map .rd.a{top:36%;left:-5%;right:-5%;height:14px;transform:rotate(-4deg)}
+  .map .rd.b{top:-5%;bottom:-5%;left:48%;width:11px}
+  .map .rd.c{top:70%;left:-5%;right:-5%;height:8px;transform:rotate(3deg)}
+  .map .pin{position:absolute;top:38%;left:48%;transform:translate(-50%,-100%);text-align:center}
+  .map .pin svg{width:38px;height:38px;filter:drop-shadow(0 3px 4px rgba(0,0,0,.3))}
+  .map .pin .lbl{background:var(--espresso);color:var(--cream);font-size:11px;font-weight:600;padding:3px 9px;border-radius:3px;margin-top:2px;display:inline-block}
+  .visit-actions{display:flex;gap:12px;flex-wrap:wrap}
+
+  /* ---------- BAND ---------- */
+  .band{background:var(--brick);color:#fdf1e3;text-align:center;padding:86px 0}
+  .band .eyebrow{color:rgba(253,241,227,.7);margin-bottom:18px}
+  .band h2{font-family:"Fraunces";font-weight:500;font-size:clamp(30px,4.5vw,50px);max-width:18ch;margin:0 auto 14px}
+  .band p{max-width:46ch;margin:0 auto 30px;opacity:.92}
+  .band .btn-out.on-dark{color:#fdf1e3}
+  .band .btn-out.on-dark:hover{background:#fdf1e3;color:var(--brick)}
+
+  /* ---------- FOOTER ---------- */
+  footer{background:var(--espresso);color:#cdbba6;padding:80px 0 40px}
+  .foot-grid{display:grid;grid-template-columns:1.4fr 1fr 1fr 1fr;gap:40px;padding-bottom:54px;border-bottom:1px solid rgba(192,137,47,.25)}
+  .foot-brand .name{font-family:"Fraunces";font-weight:600;font-size:30px;color:var(--cream);margin-bottom:14px}
+  .foot-brand p{font-size:14.5px;max-width:34ch}
+  .foot-brand .laissez{font-family:"Fraunces";font-style:italic;color:var(--brass);margin-top:18px;font-size:18px}
+  footer h5{font-size:12px;letter-spacing:.18em;text-transform:uppercase;color:var(--brass);margin-bottom:18px;font-weight:600}
+  footer ul{list-style:none}
+  footer ul li{margin-bottom:11px;font-size:14.5px}
+  footer ul li a:hover{color:var(--cream)}
+  .foot-bottom{display:flex;justify-content:space-between;align-items:center;gap:18px;padding-top:26px;font-size:13px;flex-wrap:wrap}
+  .foot-bottom .be-nice{font-family:"Fraunces";font-style:italic;color:var(--brass)}
+
+  /* reveal */
+  .reveal{opacity:0;transform:translateY(26px);transition:opacity .7s ease,transform .7s ease}
+  .reveal.in{opacity:1;transform:none}
+
+  @media(max-width:980px){
+    .story-grid,.visit-grid{grid-template-columns:1fr;gap:48px}
+    .story-img-wrap{order:-1}
+    .menu-cols{grid-template-columns:1fr;gap:48px}
+    .card-grid{grid-template-columns:repeat(2,1fr)}
+    .foot-grid{grid-template-columns:1fr 1fr}
+  }
+  @media(max-width:720px){
+    .wrap{padding:0 20px}
+    nav.links,.nav-phone{display:none}
+    .burger{display:flex}
+    .hero h1{font-size:clamp(38px,11vw,56px)}
+    .card-grid{grid-template-columns:1fr 1fr;gap:16px}
+    .dish .ph{height:180px}
+    .foot-grid{grid-template-columns:1fr 1fr;gap:30px}
+    .foot-brand{grid-column:1/-1}
+  }
+  @media(max-width:480px){
+    .card-grid{grid-template-columns:1fr}
+    .hero-actions .btn{flex:1;justify-content:center}
+  }
+  @media(prefers-reduced-motion:reduce){
+    *{animation:none!important;scroll-behavior:auto!important}
+    .reveal{opacity:1;transform:none;transition:none}
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<header class="nav" id="nav">
+  <div class="wrap nav-inner">
+    <a class="brand" href="#top">
+      <span class="name">Brenda's</span>
+      <span class="tag">Oakland</span>
+    </a>
+    <nav class="links">
+      <a class="lk" href="#story">Our Story</a>
+      <a class="lk" href="#menu">Menu</a>
+      <a class="lk" href="#dishes">Favorites</a>
+      <a class="lk" href="#visit">Visit</a>
+    </nav>
+    <div class="nav-cta">
+      <a class="nav-phone" href="tel:+15109290510">(510) 929-0510</a>
+      <a class="btn btn-fill" href="https://resy.com" target="_blank" rel="noopener">Reserve</a>
+    </div>
+    <button class="burger" id="burger" aria-label="Menu"><span></span><span></span><span></span></button>
+  </div>
+</header>
+
+<!-- HERO -->
+<section class="hero" id="top">
+  <div class="hero-bg"></div>
+  <div class="wrap hero-inner reveal">
+    <p class="eyebrow">French Soul Food · North Oakland</p>
+    <h1 class="display">Beignets, biscuits &amp; the best of <em>New Orleans.</em></h1>
+    <p class="lede">A counter-serve café on Broadway serving breakfast all morning, award-winning fried chicken, po' boys, and milkshakes — with stuffed beignets dusted to order, all day long.</p>
+    <div class="hero-actions">
+      <a class="btn btn-fill" href="https://resy.com" target="_blank" rel="noopener">Reserve a table</a>
+      <a class="btn btn-out on-dark" href="https://brendasoakland.com" target="_blank" rel="noopener">Order online</a>
+    </div>
+    <div class="hero-meta">
+      <span class="status"><span class="dot"></span>Open today · 8 AM–9 PM</span>
+      <span class="sep">/</span>
+      <span><span class="stars">★★★★</span><span style="opacity:.5">★</span> &nbsp;4.3 · 1,046 reviews</span>
+      <span class="sep">/</span>
+      <span>$20–30 per person</span>
+    </div>
+  </div>
+</section>
+
+<!-- MARQUEE -->
+<div class="marquee" aria-hidden="true">
+  <div class="marquee-track">
+    <span>Stuffed Beignets</span><span>Creole Fried Chicken</span><span>Shrimp &amp; Grits</span><span>Catfish Benedict</span><span>Biscuits &amp; Gravy</span><span>Po' Boys</span><span>Bananas Foster French Toast</span><span>Jambalaya</span>
+    <span>Stuffed Beignets</span><span>Creole Fried Chicken</span><span>Shrimp &amp; Grits</span><span>Catfish Benedict</span><span>Biscuits &amp; Gravy</span><span>Po' Boys</span><span>Bananas Foster French Toast</span><span>Jambalaya</span>
+  </div>
+</div>
+
+<!-- STORY -->
+<section class="story" id="story">
+  <div class="wrap story-grid">
+    <div class="story-copy reveal">
+      <p class="eyebrow">Our story</p>
+      <h2 class="display">A taste of home, carried west.</h2>
+      <p>Chef <strong>Brenda Buenviaje</strong> grew up just outside New Orleans, and in 2007 she opened a tiny spot in San Francisco to share the food she missed — a soulful blend of Southern, Creole, and French cooking she calls <strong>French Soul Food</strong>.</p>
+      <p>In November 2019 she brought it across the bay to Broadway. Run by Brenda and her wife and co-owner <strong>Libby Truesdell</strong>, the Oakland café is relaxed, lively, and proudly women- and LGBTQ+-owned — with an open kitchen where you can watch the krewe pull beignets fresh from the fryer.</p>
+      <p class="sig">Laissez les bons temps rouler.</p>
+      <a class="read-more" href="https://brendasoakland.com/our-story/" target="_blank" rel="noopener">Read the full story →</a>
+    </div>
+    <div class="story-img-wrap reveal">
+      <span class="frame"></span>
+      <img src="https://images.unsplash.com/photo-1567620905732-2d1ec7ab7445?w=900&q=80" alt="Freshly made beignets dusted with powdered sugar">
+    </div>
+  </div>
+</section>
+
+<!-- MENU -->
+<section class="menu" id="menu">
+  <div class="wrap">
+    <div class="menu-head reveal">
+      <p class="eyebrow">From the kitchen</p>
+      <h2 class="display">The Menu</h2>
+      <p>Breakfast served until 3 PM · Lunch &amp; dinner from 11 AM · Beignets, always</p>
+    </div>
+
+    <div class="menu-cols">
+      <div class="menu-group reveal">
+        <h3>Breakfast &amp; Brunch <span class="timetag">till 3 pm</span></h3>
+        <div class="menu-line"><span class="name">Shrimp &amp; Grits<small>Spicy tomato-bacon gravy, cheddar grits</small></span><span class="lead"></span><span class="price">$16.25</span></div>
+        <div class="menu-line"><span class="name">Fried Catfish Benedict<small>Cream biscuits, Creole hollandaise, grits or hash</small></span><span class="lead"></span><span class="price">$17.50</span></div>
+        <div class="menu-line"><span class="name">Biscuits &amp; Gravy<small>Buttery cream biscuits, sausage gravy</small></span><span class="lead"></span><span class="price">$13.00</span></div>
+        <div class="menu-line"><span class="name">Bananas Foster French Toast</span><span class="lead"></span><span class="price">$15.00</span></div>
+        <div class="menu-line"><span class="name">Crispy Pork Belly &amp; Grits<small>Poached egg, onion jam</small></span><span class="lead"></span><span class="price">$14.75</span></div>
+      </div>
+
+      <div class="menu-group reveal">
+        <h3>Fried Chicken &amp; Plates <span class="timetag gold">from 11 am</span></h3>
+        <div class="menu-line"><span class="name">Creole Fried Chicken<small>Award-winning, with hot pepper jelly</small></span><span class="lead"></span><span class="price">$18.00</span></div>
+        <div class="menu-line"><span class="name">Fried Chicken — by the piece</span><span class="lead"></span><span class="price">$3.25</span></div>
+        <div class="menu-line"><span class="name">Chicken &amp; Andouille Jambalaya</span><span class="lead"></span><span class="price">$16.50</span></div>
+        <div class="menu-line"><span class="name">Pasta Orleans</span><span class="lead"></span><span class="price">$17.00</span></div>
+        <div class="menu-line"><span class="name">Gumbo<small>Chicken, andouille &amp; the holy trinity</small></span><span class="lead"></span><span class="price">$14.00</span></div>
+      </div>
+
+      <div class="menu-group reveal">
+        <h3>Po' Boys <span class="timetag">on a French roll</span></h3>
+        <div class="menu-line"><span class="name">Shrimp &amp; Catfish Po' Boy</span><span class="lead"></span><span class="price">$16.75</span></div>
+        <div class="menu-line"><span class="name">The Troublemaker<small>Fried oysters, bacon, horseradish Tiger sauce</small></span><span class="lead"></span><span class="price">$15.75</span></div>
+        <div class="menu-line"><span class="name">Vegan-Que Po' Boy<small>Smoked tofu BBQ</small></span><span class="lead"></span><span class="price">$14.00</span></div>
+      </div>
+
+      <div class="menu-group reveal">
+        <h3>Beignets &amp; Sweets <span class="timetag gold">all day</span></h3>
+        <div class="menu-line"><span class="name">Beignet Flight<small>Plain, chocolate, apple &amp; crawfish</small></span><span class="lead"></span><span class="price">$11.00</span></div>
+        <div class="menu-line"><span class="name">Three-Way Beignets<small>Plain, apple, chocolate</small></span><span class="lead"></span><span class="price">$8.00</span></div>
+        <div class="menu-line"><span class="name">Plain Beignets — half dozen</span><span class="lead"></span><span class="price">$6.50</span></div>
+        <div class="menu-line"><span class="name">Bloody Mary</span><span class="lead"></span><span class="price">$12.00</span></div>
+      </div>
+    </div>
+
+    <p class="menu-note reveal">A sampling of what's on offer — prices vary. See the full, current menu at <a href="https://brendasoakland.com" target="_blank" rel="noopener">brendasoakland.com</a>.</p>
+  </div>
+</section>
+
+<!-- SIGNATURE DISHES -->
+<section class="sigs" id="dishes">
+  <div class="wrap">
+    <span class="eyebrow reveal">Crowd favorites</span>
+    <h2 class="display reveal">What you came for</h2>
+    <div class="card-grid">
+      <article class="dish reveal">
+        <div class="ph"><img src="https://images.unsplash.com/photo-1567620905732-2d1ec7ab7445?w=600&q=80" alt="Beignet flight"></div>
+        <div class="body"><h4>Beignet Flight</h4><p>One of each — plain, chocolate, apple, and the famous crawfish — under a snowfall of powdered sugar.</p></div>
+      </article>
+      <article class="dish reveal">
+        <div class="ph"><img src="https://images.unsplash.com/photo-1626645738196-c2a7c87a8f58?w=600&q=80" alt="Creole fried chicken"></div>
+        <div class="body"><h4>Creole Fried Chicken</h4><p>Extra-crispy and award-winning, served with a swipe of house hot pepper jelly.</p></div>
+      </article>
+      <article class="dish reveal">
+        <div class="ph"><img src="https://images.unsplash.com/photo-1608039755401-742074f0548d?w=600&q=80" alt="Catfish Benedict"></div>
+        <div class="body"><h4>Catfish Benedict</h4><p>Fried catfish over cream biscuits with Creole hollandaise and cheesy grits.</p></div>
+      </article>
+      <article class="dish reveal">
+        <div class="ph"><img src="https://images.unsplash.com/photo-1604908176997-125f25cc6f3d?w=600&q=80" alt="Shrimp and grits"></div>
+        <div class="body"><h4>Shrimp &amp; Grits</h4><p>A Southern classic made our own with a spicy tomato-bacon gravy over cheddar grits.</p></div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- VISIT -->
+<section class="visit" id="visit">
+  <div class="wrap visit-grid">
+    <div class="reveal">
+      <p class="eyebrow">Find us</p>
+      <h2 class="display">Come on by.</h2>
+
+      <div class="info-block">
+        <div class="k">Address</div>
+        <div class="v">4045 Broadway #101, Oakland, CA 94611<br><span style="color:var(--muted);font-size:14px">Located in Maya · Plus code RPHV+8C</span></div>
+      </div>
+      <div class="info-block">
+        <div class="k">Reservations &amp; Phone</div>
+        <div class="v"><a href="https://resy.com" target="_blank" rel="noopener">Reserve on Resy</a> &nbsp;·&nbsp; <a href="tel:+15109290510">(510) 929-0510</a></div>
+      </div>
+      <div class="info-block">
+        <div class="k">Dining</div>
+        <div class="v" style="font-size:15px;color:var(--muted)">Counter-serve · Dine-in · Heated patio · Curbside pickup · No-contact delivery</div>
+      </div>
+
+      <div class="badges">
+        <span class="badge"><span class="pip" style="background:var(--brick)"></span>Women-owned</span>
+        <span class="badge"><span class="pip" style="background:var(--shutter)"></span>LGBTQ+ owned</span>
+        <span class="badge"><span class="pip" style="background:var(--brass)"></span>LGBTQ+ friendly</span>
+      </div>
+    </div>
+
+    <div class="visit-aside reveal">
+      <div class="map" aria-label="Map showing Brenda's on Broadway">
+        <div class="rd a"></div><div class="rd b"></div><div class="rd c"></div>
+        <div class="pin">
+          <svg viewBox="0 0 24 24"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7z" fill="#a6322a"/><circle cx="12" cy="9" r="2.5" fill="#fff"/></svg>
+          <div class="lbl">Brenda's</div>
+        </div>
+      </div>
+
+      <table class="hours-table">
+        <tr><td>Monday</td><td>8 AM – 9 PM</td></tr>
+        <tr><td>Tuesday</td><td>Closed</td></tr>
+        <tr><td>Wednesday</td><td>8 AM – 9 PM</td></tr>
+        <tr class="today"><td>Thursday</td><td>8 AM – 9 PM</td></tr>
+        <tr><td>Friday</td><td>8 AM – 9 PM</td></tr>
+        <tr><td>Saturday</td><td>8 AM – 9 PM</td></tr>
+        <tr><td>Sunday</td><td>8 AM – 9 PM</td></tr>
+      </table>
+
+      <div class="visit-actions" style="margin-top:24px">
+        <a class="btn btn-fill" href="https://www.google.com/maps?q=Brenda%27s+Oakland+4045+Broadway" target="_blank" rel="noopener">Get directions</a>
+        <a class="btn btn-out" href="https://brendasoakland.com" target="_blank" rel="noopener">Order online</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- BAND -->
+<section class="band">
+  <div class="wrap reveal">
+    <p class="eyebrow">Saturday &amp; Sunday</p>
+    <h2>Brunch the way New Orleans intended.</h2>
+    <p>Grab the krewe, claim a seat on the patio, and let the good times roll. Reserve ahead or just walk on in.</p>
+    <a class="btn btn-out on-dark" href="https://resy.com" target="_blank" rel="noopener">Reserve a table</a>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="wrap">
+    <div class="foot-grid">
+      <div class="foot-brand">
+        <div class="name">Brenda's Oakland</div>
+        <p>New Orleans French Soul Food on Broadway. Women- and LGBTQ+-owned, serving the East Bay since 2019.</p>
+        <p class="laissez">Laissez les bons temps rouler.</p>
+      </div>
+      <div>
+        <h5>Visit</h5>
+        <ul>
+          <li>4045 Broadway #101</li>
+          <li>Oakland, CA 94611</li>
+          <li><a href="tel:+15109290510">(510) 929-0510</a></li>
+          <li>Daily 8 AM–9 PM · Closed Tue</li>
+        </ul>
+      </div>
+      <div>
+        <h5>Order</h5>
+        <ul>
+          <li><a href="https://resy.com" target="_blank" rel="noopener">Reserve on Resy</a></li>
+          <li><a href="https://brendasoakland.com" target="_blank" rel="noopener">Order online</a></li>
+          <li><a href="#menu">View menu</a></li>
+          <li><a href="#dishes">Favorites</a></li>
+        </ul>
+      </div>
+      <div>
+        <h5>About</h5>
+        <ul>
+          <li><a href="#story">Our story</a></li>
+          <li><a href="https://brendasoakland.com" target="_blank" rel="noopener">brendasoakland.com</a></li>
+          <li><a href="#visit">Hours &amp; directions</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="foot-bottom">
+      <span>© 2026 Brenda's Oakland. All rights reserved.</span>
+      <span class="be-nice">Be nice or leave. ✦</span>
+    </div>
+  </div>
+</footer>
+
+<script>
+  // sticky nav
+  const nav=document.getElementById('nav');
+  const onScroll=()=>nav.classList.toggle('solid',window.scrollY>40);
+  onScroll(); window.addEventListener('scroll',onScroll,{passive:true});
+
+  // mobile menu (simple anchor jump to sections list)
+  document.getElementById('burger').addEventListener('click',()=>{
+    document.getElementById('visit').scrollIntoView({behavior:'smooth'});
+  });
+
+  // scroll reveal
+  const io=new IntersectionObserver((entries)=>{
+    entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target);}});
+  },{threshold:.12});
+  document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
+</script>
+</body>
+</html>
